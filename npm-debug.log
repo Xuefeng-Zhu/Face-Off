@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/opt/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'generator-angularseed' ]
+2 info using npm@2.0.0-beta.0
+3 info using node@v0.10.29
+4 verbose cache add [ 'generator-angularseed', null ]
+5 verbose cache add spec="generator-angularseed" args=["generator-angularseed",null]
+6 verbose parsed spec { raw: 'generator-angularseed',
+6 verbose parsed spec   scope: null,
+6 verbose parsed spec   name: 'generator-angularseed',
+6 verbose parsed spec   rawSpec: '',
+6 verbose parsed spec   spec: '*',
+6 verbose parsed spec   type: 'range' }
+7 verbose addNamed [ 'generator-angularseed', '*' ]
+8 verbose addNamed [ null, '*' ]
+9 silly lockFile 6f763690-generator-angularseed generator-angularseed@*
+10 verbose lock generator-angularseed@* /Users/Frank/.npm/6f763690-generator-angularseed.lock
+11 silly lockFile 6f763690-generator-angularseed generator-angularseed@*
+12 error Error: Attempt to unlock generator-angularseed@*, which hasn't been locked
+12 error     at unlock (/opt/local/lib/node_modules/npm/lib/utils/locker.js:44:11)
+12 error     at cb (/opt/local/lib/node_modules/npm/lib/cache/add-named.js:32:5)
+12 error     at /opt/local/lib/node_modules/npm/lib/cache/add-named.js:41:20
+12 error     at /opt/local/lib/node_modules/npm/lib/utils/locker.js:30:7
+12 error     at cb (/opt/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:149:38)
+12 error     at /opt/local/lib/node_modules/npm/node_modules/lockfile/lockfile.js:177:38
+12 error     at Object.oncomplete (fs.js:107:15)
+13 error If you need help, you may report this *entire* log,
+13 error including the npm and node versions, at:
+13 error     <http://github.com/npm/npm/issues>
+14 error System Darwin 13.4.0
+15 error command "node" "/opt/local/bin/npm" "install" "-g" "generator-angularseed"
+16 error cwd /Users/Frank/mygit/todo-list
+17 error node -v v0.10.29
+18 error npm -v 2.0.0-beta.0
+19 verbose exit [ 1, true ]
