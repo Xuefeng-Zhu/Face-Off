@@ -2,13 +2,29 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
-  <title>Todo App</title>
+  <title>Face Off</title>
   <link rel="stylesheet" href="css/app.css"/>
   <link rel="stylesheet" href="bower_components/semantic/build/packaged/css/semantic.css"/>
 
 </head>
 <body>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1554004908148607',
+        xfbml      : true,
+        version    : 'v2.2'
+      });
+    };  
 
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
 
   <div class="center" ng-view></div>
 
@@ -17,15 +33,11 @@
   -->
   <script src="lib/jquery-1.11.1.min.js"></script>
   <script src="bower_components/semantic/build/packaged/javascript/semantic.js"></script>
-  <script src="lib/todo.client.js"></script>
 
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-route.js"></script>
   
   <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
   <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
 </body>
 </html>

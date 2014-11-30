@@ -1,0 +1,37 @@
+<div class="ui grid">
+	<div class="three wide column">
+		<div class="ui vertical labeled icon menu">
+			<a class="active item" href="#/menu">
+				<i class="browser icon"></i>
+				Survey
+			</a>
+			<a class="item" ng-click="sendMessage()">
+				<i class="teal mail icon"></i>
+				Invite
+			</a>
+			<a class="item" href="#/result">
+				<i class="red bar chart icon"></i>
+				Result
+			</a>
+		</div>
+	</div>
+	<div class="thirteen wide column" style="overflow-y: scroll">
+		<div class="ui stacked segment">
+			<!-- <div ng-repeat="(id, todo) in todos" ng-show="todo.is_complete==status">
+					<div class="ui segment event" ng-dblclick="editTodo(id)">
+							<div class="ui toggle checkbox">
+									<input type="checkbox" name="event" id="{{id}}" ng-checked="todo.is_complete" ng-click="toggleTodo(id)">
+									<label for="{{id}}"></label>
+							</div>
+							<b style="display:inline">{{todo.description}}</b>
+					</div>
+			</div> -->
+			<div class="ui segment event">
+				<b style="display:inline">1: How smart?</b>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(".thirteen.wide.column").height($(window).height() * 0.7);
+</script>
