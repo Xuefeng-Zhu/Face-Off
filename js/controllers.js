@@ -1,5 +1,7 @@
 'use strict';
 /* Controllers */
+var url = "https://face-off.firebaseio.com/"
+
 angular.module('myApp.controllers', [])
     .controller('LoginCtrl', ['$scope', '$rootScope', '$location',
         function($scope, $rootScope, $location) {
@@ -17,12 +19,16 @@ angular.module('myApp.controllers', [])
             var userID = $routeParams['userID'];
             $scope.questions = questions;
 
-            $('.ui.rating')
-                .rating({});
+            setTimeout(ratingStar, 100);
+
+            function ratingStar() {
+                $('.ui.rating')
+                    .rating({});
+            }
         }
     ])
-    .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$routeParams',
-        function($scope, $rootScope, $location, $routeParams) {
+    .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$http',
+        function($scope, $rootScope, $location, $http) {
             if (!$rootScope.facebook) {
                 alert('Login fails');
                 $location.path('/login');
@@ -31,7 +37,7 @@ angular.module('myApp.controllers', [])
 
             $scope.questions = questions;
 
-            setTimeout(ratingStar, 1000);
+            setTimeout(ratingStar, 100);
 
             function ratingStar() {
                 $('.ui.rating')
@@ -45,6 +51,21 @@ angular.module('myApp.controllers', [])
                     method: 'send',
                     link: link
                 });
+            };
+
+            $scope.submitSurvey = function(){
+                var rawRatings = $('.ui.rating').rating('getRating');
+                var ratings = []
+                for (var i = 0; i < rawRatings.length / 2; i++){
+                    if (rawRatings[i * 2] == 0 || rawRatings[i * 2 + 1] == 0){
+                        alert('Please finish all the questions before submission');
+                        return;
+                    }
+
+                    ratings.push((rawRatings[i * 2]+rawRatings[i * 2 + 1]) / 2);
+                }
+
+                $http.put([url, 'self',  $rootScope.facebook.authResponse.userID + '.json'].join('/'), ratings); 
             }
         }
     ]);
