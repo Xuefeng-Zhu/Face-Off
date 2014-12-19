@@ -15,9 +15,10 @@ angular.module('myApp.controllers', [])
     .controller('SurveyCtrl', ['$scope', '$routeParams', '$location',
         function($scope, $routeParams, $location) {
             var userID = $routeParams['userID'];
-            console.log(userID);
             $scope.questions = questions;
 
+            $('.ui.rating')
+                .rating({});
         }
     ])
     .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$routeParams',
