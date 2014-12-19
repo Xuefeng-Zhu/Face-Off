@@ -20,6 +20,10 @@ config(['$routeProvider',
             templateUrl: 'partials/survey.html',
             controller: 'SurveyCtrl'
         });
+        $routeProvider.when('/result/:userID', {
+            templateUrl: 'partials/result.html',
+            controller: 'ResultCtrl'
+        });
         $routeProvider.otherwise({
             redirectTo: '/login'
         });

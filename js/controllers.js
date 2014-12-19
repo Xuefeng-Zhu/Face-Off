@@ -37,8 +37,59 @@ angular.module('myApp.controllers', [])
                     ratings.push((rawRatings[i * 2] + rawRatings[i * 2 + 1]) / 2);
                 }
 
-                $http.post([url, 'others', userID + '.json'].join('/'), ratings);
+                $http.post([url, 'others', userID + '.json'].join('/'), ratings)
+                    .then(function() {
+                        $location.path('/result/' + userID);
+                    });
             }
+        }
+    ])
+    .controller('ResultCtrl', ['$scope', '$routeParams', '$location', '$http',
+        function($scope, $routeParams, $location, $http) {
+            var userID = $routeParams['userID'];
+            var categories = ['Social', 'Intelligence', 'Niceness', 'Methodical'];
+
+            $http.get([url, 'self', userID + '.json'].join('/'))
+                .then(function(response) {
+                    var self = response.data;
+                    $http.get([url, 'others', userID + '.json'].join('/'))
+                        .then(function(response) {
+                            var temp = response.data;
+                            var size = 0
+                            var others = [0, 0, 0, 0];
+                            for (var i in temp) {
+                                var other = temp[i];
+                                size += 1
+                                for (var c in other) {
+                                    others[c] += other[c];
+                                }
+                            }
+                            var data = [];
+                            for (var i in others) {
+                                data.push({
+                                    'categories': categories[i],
+                                    'name': 'self',
+                                    'value': self[i]
+                                });
+                                data.push({
+                                    'categories': categories[i],
+                                    'name': 'others',
+                                    'value': others[i] / size
+                                });
+                            }
+
+                            console.log(data);
+                            var visualization = d3plus.viz()
+                                .container("#viz")
+                                .data(data)
+                                .type("bar")
+                                .id("name")
+                                .x("categories")
+                                .y("value")
+                                .draw()
+
+                        })
+                })
         }
     ])
     .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$http',
