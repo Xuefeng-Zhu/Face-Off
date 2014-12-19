@@ -17,10 +17,20 @@ angular.module('myApp.controllers', [])
     ])
     .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$routeParams',
         function($scope, $rootScope, $location, $routeParams) {
+            $scope.questions = questions;
+
             if (!$rootScope.facebook) {
                 alert("Login fails");
                 $location.path('/login');
                 return;
+            }
+
+            setTimeout(ratingStar, 1000);
+
+            function ratingStar() {
+                $('.ui.rating')
+                    .rating({
+                    });
             }
 
             console.log($rootScope.facebook);
