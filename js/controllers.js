@@ -30,9 +30,6 @@ angular.module('myApp.controllers', [])
 
             $scope.questions = questions;
 
-            var tmp = ['http://xuefeng-zhu.github.io/Face-Off#', 'survey', $rootScope.facebook.authResponse.userID].join('/');
-            console.log(tmp)
-
             setTimeout(ratingStar, 1000);
 
             function ratingStar() {
@@ -40,10 +37,12 @@ angular.module('myApp.controllers', [])
                     .rating({});
             }
 
+            var link = ['http://xuefeng-zhu.github.io/Face-Off#', 'survey', $rootScope.facebook.authResponse.userID].join('/');
+            link = 'http://xuefeng-zhu.github.io/Face-Off/#/survey/568715569930034'.toString();
             $scope.sendMessage = function() {
                 FB.ui({
                     method: 'send',
-                    link: tmp
+                    link: link
                 });
             }
         }
