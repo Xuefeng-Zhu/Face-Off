@@ -22,19 +22,23 @@ angular.module('myApp.controllers', [])
     ])
     .controller('MenuCtrl', ['$scope', '$rootScope', '$location', '$routeParams',
         function($scope, $rootScope, $location, $routeParams) {
-            $scope.questions = questions;
             if (!$rootScope.facebook) {
                 alert('Login fails');
                 $location.path('/login');
                 return;
             }
+
+            $scope.questions = questions;
+
             var tmp = ['http://xuefeng-zhu.github.io/Face-Off', 'survey', $rootScope.facebook.authResponse.userID].join('/');
+          
             setTimeout(ratingStar, 1000);
 
             function ratingStar() {
                 $('.ui.rating')
                     .rating({});
             }
+
             $scope.sendMessage = function() {
                 FB.ui({
                     method: 'send',
