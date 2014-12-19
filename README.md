@@ -4,6 +4,9 @@ Face-Off
 ## Overview
 CS 467 "Quantified Selfie" Implementation Write-upGoal/Motivation: Everyone has their opinions about themselves. In our Quantified Selfie project, we will visualize how our views of ourselves compare with how others view us. We chose to focus on the four factors that people seem to notice the most while learning more about their friends and acquaintances - social skills, intelligence, niceness and organization. Audience: This visualization might appeal to anyone who is interested in learning about how others view him/her in society. It is meant to be an introspective and interesting mode of feedback regarding oneself. 
 
+**Demo** [Face Off](xuefeng-zhu.github.io/Face-Off/#)
+
+
 ## Questions
 
 1.	I think I come across as a nice person to most people, is this true?
