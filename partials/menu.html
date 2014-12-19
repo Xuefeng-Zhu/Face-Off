@@ -17,15 +17,6 @@
 	</div>
 	<div class="thirteen wide column" style="overflow-y: scroll">
 		<div class="ui stacked segment">
-			<!-- <div ng-repeat="(id, todo) in todos" ng-show="todo.is_complete==status">
-						<div class="ui segment event" ng-dblclick="editTodo(id)">
-									<div class="ui toggle checkbox">
-												<input type="checkbox" name="event" id="{{id}}" ng-checked="todo.is_complete" ng-click="toggleTodo(id)">
-												<label for="{{id}}"></label>
-									</div>
-									<b style="display:inline">{{todo.description}}</b>
-						</div>
-			</div> -->
 			<div class="ui segment event" ng-repeat="(index, question) in questions">
 				<p><b style="display:inline">{{index+1}}. {{question}}</b></p>
 				<div class="ui star rating">
@@ -36,6 +27,7 @@
 					<i class="icon"></i>
 				</div>
 			</div>
+			<div class="ui blue button">Submit</div>
 		</div>
 	</div>
 </div>
