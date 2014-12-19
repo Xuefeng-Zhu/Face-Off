@@ -30,8 +30,9 @@ angular.module('myApp.controllers', [])
 
             $scope.questions = questions;
 
-            var tmp = ['http://xuefeng-zhu.github.io/Face-Off', 'survey', $rootScope.facebook.authResponse.userID].join('/');
-          
+            var tmp = ['http://xuefeng-zhu.github.io/Face-Off#', 'survey', $rootScope.facebook.authResponse.userID].join('/');
+            console.log(tmp)
+
             setTimeout(ratingStar, 1000);
 
             function ratingStar() {
