@@ -14,8 +14,8 @@ angular.module('myApp.controllers', [])
             }
         }
     ])
-    .controller('SurveyCtrl', ['$scope', '$routeParams', '$location',
-        function($scope, $routeParams, $location) {
+    .controller('SurveyCtrl', ['$scope', '$routeParams', '$location', '$http',
+        function($scope, $routeParams, $location, $http) {
             var userID = $routeParams['userID'];
             $scope.questions = questions;
 
@@ -24,6 +24,20 @@ angular.module('myApp.controllers', [])
             function ratingStar() {
                 $('.ui.rating')
                     .rating({});
+            }
+
+            $scope.submitSurvey = function() {
+                var rawRatings = $('.ui.rating').rating('getRating');
+                var ratings = []
+                for (var i = 0; i < rawRatings.length / 2; i++) {
+                    if (rawRatings[i * 2] == 0 || rawRatings[i * 2 + 1] == 0) {
+                        alert('Please finish all the questions before submission');
+                        return;
+                    }
+                    ratings.push((rawRatings[i * 2] + rawRatings[i * 2 + 1]) / 2);
+                }
+
+                $http.post([url, 'others', userID + '.json'].join('/'), ratings);
             }
         }
     ])
@@ -53,19 +67,18 @@ angular.module('myApp.controllers', [])
                 });
             };
 
-            $scope.submitSurvey = function(){
+            $scope.submitSurvey = function() {
                 var rawRatings = $('.ui.rating').rating('getRating');
                 var ratings = []
-                for (var i = 0; i < rawRatings.length / 2; i++){
-                    if (rawRatings[i * 2] == 0 || rawRatings[i * 2 + 1] == 0){
+                for (var i = 0; i < rawRatings.length / 2; i++) {
+                    if (rawRatings[i * 2] == 0 || rawRatings[i * 2 + 1] == 0) {
                         alert('Please finish all the questions before submission');
                         return;
                     }
-
-                    ratings.push((rawRatings[i * 2]+rawRatings[i * 2 + 1]) / 2);
+                    ratings.push((rawRatings[i * 2] + rawRatings[i * 2 + 1]) / 2);
                 }
 
-                $http.put([url, 'self',  $rootScope.facebook.authResponse.userID + '.json'].join('/'), ratings); 
+                $http.put([url, 'self', $rootScope.facebook.authResponse.userID + '.json'].join('/'), ratings);
             }
         }
     ]);
