@@ -8,6 +8,7 @@ angular.module('myApp.controllers', [])
             $scope.login = function() {
                 FB.login(function(response) {
                     $rootScope.facebook = response;
+                    console.log(response)
                     $location.path('/menu');
                     $rootScope.$apply();
                 });
